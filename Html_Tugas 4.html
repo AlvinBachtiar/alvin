@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistem Manajemen Transportasi</title>
+</head>
+<body>
+  <h2>Daftar Pelanggan yang Menyewa Kendaraan</h2>
+  <ul id="daftarPelanggan"></ul>
+
+  <script>
+    // Class Pelanggan
+    class Pelanggan {
+      constructor(nama, nomorTelepon, kendaraanDisewa) {
+        this.nama = nama;
+        this.nomorTelepon = nomorTelepon;
+        this.kendaraanDisewa = kendaraanDisewa;
+      }
+
+      // Method untuk menampilkan data pelanggan
+      tampilkanData() {
+        return `Nama: ${this.nama}, No. Telepon: ${this.nomorTelepon}, Kendaraan: ${this.kendaraanDisewa}`;
+      }
+    }
+
+    // Array untuk menyimpan data pelanggan
+    const daftarPelanggan = [];
+
+    // Fungsi untuk mencatat penyewaan kendaraan
+    function sewaKendaraan(nama, nomorTelepon, kendaraanDisewa) {
+      const pelangganBaru = new Pelanggan(nama, nomorTelepon, kendaraanDisewa);
+      daftarPelanggan.push(pelangganBaru);
+    }
+
+    // Fungsi untuk menampilkan semua pelanggan yang menyewa kendaraan
+    function tampilkanPelanggan() {
+      const list = document.getElementById("daftarPelanggan");
+      list.innerHTML = ""; // Bersihkan list sebelum ditampilkan
+
+      daftarPelanggan.forEach(p => {
+        const item = document.createElement("li");
+        item.textContent = p.tampilkanData();
+        list.appendChild(item);
+      });
+    }
+
+    // Contoh data
+    sewaKendaraan("Alvin Bachtiar", "081234567890", "Mobil");
+    sewaKendaraan("Dian", "089876543210", "Motor");
+    sewaKendaraan("Budi", "082112345678", "Bus");
+
+    // Tampilkan data pelanggan
+    tampilkanPelanggan();
+  </script>
+</body>
+</html>
